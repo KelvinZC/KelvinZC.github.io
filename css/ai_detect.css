@@ -1,0 +1,13 @@
+.scanning {
+  width: 500px;
+  height:500px;
+  position: fixed;
+}
+.detecting {
+  margin-left: 800px;
+  position: fixed;
+}
+.snap {
+  position: relative;
+  margin-top: 510px;
+}
