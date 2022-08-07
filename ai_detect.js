@@ -7,8 +7,9 @@ window.onload = function(){
     console.log(width)
 
     
-    let div = document.getElementById("recognize");
-    div.innerHTML += '<canvas class="detecting" id="canvas" width=' + width + ' height='+ width + '></canvas>';
+    let recognize = document.getElementById("recognize");
+    recognize.style.height=width+'px';
+    recognize.innerHTML += '<canvas class="detecting" id="canvas" width=' + width + ' height='+ width + '></canvas>';
 
 
     let video = document.getElementById("video");
@@ -37,20 +38,12 @@ artworkDict = {
 function getMedia() {
     let constraints = {
         video: {
-            // width: {
-            //   min: 375,
-            //   ideal: 1920,
-            //   max: 2560,
-            // },
-            // height: {
-            //   min: 812,
-            //   ideal: 1080,
-            //   max: 1440
-            // }
-            width:width, height:width
+            width:width,
+            height:width,
+            facingMode: 'environment'
           },
         audio: true,
-        facingMode: 'environment'
+        
     };
 
     /*
