@@ -44,11 +44,8 @@ a:visited {
 .recognize {
   margin-top: 50px;
 }
-.scanning {
-  position: relative;
-}
 .detecting {
-  position: fixed;
+  position: absolute;
 }
 .snap {
   position: relative;

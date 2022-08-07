@@ -3,19 +3,23 @@ var width;
 window.onload = function(){
 
     width = document.documentElement.clientWidth;
-   // width=300;
+    //width=390;
     console.log(width)
 
     
     let recognize = document.getElementById("recognize");
-    recognize.style.height=width+'px';
+    
     recognize.innerHTML += '<canvas class="detecting" id="canvas" width=' + width + ' height='+ width + '></canvas>';
 
 
     let video = document.getElementById("video");
     video.style.zIndex=0;
+    video.style.height=width+'px';
+    video.style.width=width+'px';
+
     let canvas = document.getElementById("canvas");
     canvas.style.zIndex=-1;
+    canvas.style.marginLeft=-width+'px';
 
     getMedia();
 
