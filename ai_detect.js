@@ -1,3 +1,25 @@
+var height;
+var width;
+window.onload = function(){
+
+    width = document.documentElement.clientWidth;
+   // width=300;
+    console.log(width)
+
+    
+    let div = document.getElementById("recognize");
+    div.innerHTML += '<canvas class="detecting" id="canvas" width=' + width + ' height='+ width + '></canvas>';
+
+
+    let video = document.getElementById("video");
+    video.style.zIndex=0;
+    let canvas = document.getElementById("canvas");
+    canvas.style.zIndex=-1;
+
+    getMedia();
+
+}
+
 var img=null;
 //img = document.querySelector("img");
 const resultEle = document.querySelector(`.result`);
@@ -7,10 +29,10 @@ artworkDict = {
     10: '', 11: 'think', 12: ''
 }
 
-let video = document.getElementById("video");
-video.style.zIndex=0;
-let canvas = document.getElementById("canvas");
-canvas.style.zIndex=-1;
+// let video = document.getElementById("video");
+// video.style.zIndex=0;
+// let canvas = document.getElementById("canvas");
+// canvas.style.zIndex=-1;
 
 function getMedia() {
     let constraints = {
@@ -25,11 +47,12 @@ function getMedia() {
             //   ideal: 1080,
             //   max: 1440
             // }
-            width:200, height:500
+            width:width, height:width
           },
         audio: true,
         facingMode: 'environment'
     };
+
     /*
     这里介绍新的方法:H5新媒体接口 navigator.mediaDevices.getUserMedia()
     这个方法会提示用户是否允许媒体输入,(媒体输入主要包括相机,视频采集设备,屏幕共享服务,麦克风,A/D转换器等)
@@ -49,7 +72,9 @@ function getMedia() {
 function takePhoto() {
     canvas.style.zIndex = 1;
     let ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, 200, 500);
+    console.log(width)
+    console.log(height)
+    ctx.drawImage(video, 0, 0, width, width);
     img = canvas;
     
     detect();
