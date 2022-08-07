@@ -14,8 +14,21 @@ canvas.style.zIndex=-1;
 
 function getMedia() {
     let constraints = {
-        video: {width:200, height: 200},
-        audio: true
+        video: {
+            // width: {
+            //   min: 375,
+            //   ideal: 1920,
+            //   max: 2560,
+            // },
+            // height: {
+            //   min: 812,
+            //   ideal: 1080,
+            //   max: 1440
+            // }
+            width:375, height:812
+          },
+        audio: true,
+        facingMode: 'environment'
     };
     /*
     这里介绍新的方法:H5新媒体接口 navigator.mediaDevices.getUserMedia()
