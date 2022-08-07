@@ -25,7 +25,7 @@ function getMedia() {
             //   ideal: 1080,
             //   max: 1440
             // }
-            width:375, height:812
+            width:200, height:500
           },
         audio: true,
         facingMode: 'environment'
@@ -49,7 +49,7 @@ function getMedia() {
 function takePhoto() {
     canvas.style.zIndex = 1;
     let ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, 500, 500);
+    ctx.drawImage(video, 0, 0, 200, 500);
     img = canvas;
     
     detect();
