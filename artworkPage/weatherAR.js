@@ -1,21 +1,23 @@
-var weather = 2;
+var weather = 0;
 
-AFRAME.registerComponent('weather', {
-    /**
-     * Code within this function will be called when everything in <a-scene> is ready and loaded.
-     */
-    init: function () {
-        let sceneE1 = document.querySelector('a-scene');
+// AFRAME.registerComponent('weather', {
+//     /**
+//      * Code within this function will be called when everything in <a-scene> is ready and loaded.
+//      */
+   // init: function () {
+    function display(artwork){
+        let weatherMarker = document.querySelector('a-marker');
         var weatherModel = document.createElement('a-asset-item');
         weatherModel.setAttribute('id', 'weatherModel');
         var groupContainer = document.createElement('a-entity');
-        sceneE1.appendChild(groupContainer);
+        weatherMarker.appendChild(groupContainer);
         
+        console.log(artwork)
         
         //cloudy
         if(weather == 0){
             weatherModel.setAttribute('src', '../ARModels/cloudy/scene.gltf');
-            sceneE1.appendChild(weatherModel);
+            weatherMarker.appendChild(weatherModel);
 
             groupContainer.setAttribute('position', '-1 0 0');
             groupContainer.setAttribute('animation', 'property: position; to: 1 0 0;  dur: 10000; easing: linear; dir: alternate; loop:true;');
@@ -23,14 +25,16 @@ AFRAME.registerComponent('weather', {
                 var cloud = document.createElement('a-entity');
                 cloud.setAttribute('gltf-model', '#weatherModel');
                 cloud.setAttribute('scale', '0.015 0.014 0.015');
-                cloud.setAttribute('position', {x: getRandomArbitrary(-2, 0.3, 3), y: 2.1, z: getRandomArbitrary(-1, 1, 3)});
+                cloud.setAttribute('rotation', '180 0 0');
+                 //   cloud.setAttribute('position', {x: -1.5, y: 0, z: -3.5});
+                cloud.setAttribute('position', {x: getRandomArbitrary(-1, 1.5, 3), y: getRandomArbitrary(-1, 1, 3), z: getRandomArbitrary(-4., -3.5, 3)});
                 groupContainer.appendChild(cloud);
             }
         }
         //snow
         else if(weather == 1){
             weatherModel.setAttribute('src', '../ARModels/snow/scene.gltf');
-            sceneE1.appendChild(weatherModel);
+            weatherMarker.appendChild(weatherModel);
 
             groupContainer.setAttribute('position', '0 1 0');
             groupContainer.setAttribute('animation', 'property: position; to: 0 -0.5 0;  dur: 10000; easing: linear; loop:true;');
@@ -49,20 +53,20 @@ AFRAME.registerComponent('weather', {
         else if(weather == 2){
             // add sun
             weatherModel.setAttribute('src', '../ARModels/sun1/scene.gltf');
-            sceneE1.appendChild(weatherModel);
+            weatherMarker.appendChild(weatherModel);
             
             var sun = document.createElement('a-entity');
             sun.setAttribute('gltf-model', '#weatherModel');
             sun.setAttribute('scale', '0.5 0.5 0.5');
             sun.setAttribute('rotation', '0 180 0');
             sun.setAttribute('position', '-33 1.9 -5');
-            sceneE1.appendChild(sun);
+            weatherMarker.appendChild(sun);
 
             // add clouds
             var cloudModel = document.createElement('a-asset-item');
             cloudModel.setAttribute('id', 'cloudModel');
             cloudModel.setAttribute('src', '../ARModels/cloudy/scene.gltf');
-            sceneE1.appendChild(cloudModel);
+            weatherMarker.appendChild(cloudModel);
 
             groupContainer.setAttribute('position', '-1 0 0');
             groupContainer.setAttribute('animation', 'property: position; to: 1 0 0;  dur: 15000; easing: linear; dir: alternate; loop:true;');
@@ -81,7 +85,7 @@ AFRAME.registerComponent('weather', {
         else if(weather == 3){
             // add tornado
             weatherModel.setAttribute('src', '../ARModels/tornado/scene.gltf');
-            sceneE1.appendChild(weatherModel);
+            weatherMarker.appendChild(weatherModel);
             
             groupContainer.setAttribute('position', '0.8 1.5 0');
             groupContainer.setAttribute('animation', 'property: position; to: -3 -1.5 0;  dur: 5000; easing: linear; loop:true;');
@@ -109,8 +113,8 @@ AFRAME.registerComponent('weather', {
     
     }
 
-    
-})
+
+//})
 
 
 function getRandomArbitrary(min, max, decimals) {
