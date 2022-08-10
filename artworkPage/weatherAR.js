@@ -1,4 +1,4 @@
-var weather = 2;
+var weather = 0;
 
 AFRAME.registerComponent('weather', {
     /**
