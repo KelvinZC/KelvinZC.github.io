@@ -30,8 +30,8 @@ var img=null;
 const resultEle = document.querySelector(`.result`);
 let objectDetector;
 artworkDict = {
-    0: '', 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: '',
-    10: '', 11: 'think', 12: ''
+    0: 'story', 1: 'story', 2: 'story', 3: 'story', 4: 'story', 5: 'story', 6: 'story', 7: 'story', 8: 'story', 9: 'story',
+    10: 'story', 11: 'story', 12: 'think', 13: 'racecar', 14: 'blocks', 15: 'quantum',
 }
 
 // let video = document.getElementById("video");
@@ -114,10 +114,6 @@ async function detect() {
     console.log(maxIndex);
     console.log(result_array);
 
-    var detectResult = false;
-    if(maxIndex === 11){
-        detectResult = true;
-    }
 
 
     // let max=0;
@@ -134,7 +130,7 @@ async function detect() {
     //renderDetectionResult(boxes, classes, scores, n);
     resultEle.textContent = `Latency: ${latency}ms`;
 
-    if(detectResult){
+    if(maxIndex != -1){
         jumpToArtworkPage(maxIndex);
     }
     else{
@@ -145,7 +141,7 @@ async function detect() {
         setTimeout(function (){
             alert("No artworks detected!");
         },1000);
-            
+        // jumpToArtworkPage(0);
     }
 }
 
@@ -197,15 +193,21 @@ function createDetectionResultBox(left, top, width, height, name, score) {
     return container;
 }
 
-document.querySelector(".btn").addEventListener("click", () => {
-    detect();
-});
+// document.querySelector(".btn").addEventListener("click", () => {
+//     detect();
+// });
 
 
 function jumpToArtworkPage(key){
     alert("Artwork detected!")
-    key = key.toString();
-    artworkName = artworkDict[key];
-    window.location.href = "./artworkPage/" + artworkName + ".html";
+    keyString = key.toString();
+    
+    if(key>=0 && key<12){
+        window.location.href = "./artworkPage/story.html?artworkID=" + keyString ;
+    }
+    else{
+        artworkName = artworkDict[keyString];
+        window.location.href = './artworkPage/'+ artworkName + '.html';
+    }
 
 }
