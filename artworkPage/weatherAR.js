@@ -332,30 +332,19 @@ function weather(artwork, weather){
 
 function AX(){
     x+=0.5;
-    // var component = document.querySelector('[weather]').components.weather; 
-
-    // component.adjust();
-    // var trackPosition = document.querySelector('#track').object3D.position;
-    // var track = document.querySelector('#track');
-    // track.setAttribute("position",{x:trackPosition.x+0.5, y:trackPosition.y, z:trackPosition.z});
 }
 function AY(artwork, weather){
-    var component = document.querySelector('[weather]').components.weather; 
-    component.track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y+2.5, z:markerPosition});
+    y+=0.5;
 }
 function AZ(artwork, weather){
-    var component = document.querySelector('[weather]').components.weather; 
-    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+    z+=0.5;
 }
 function DX(artwork, weather){
-    var component = document.querySelector('[weather]').components.weather; 
-    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+    x-=0.5;
 }
 function DY(artwork, weather){
-    var component = document.querySelector('[weather]').components.weather; 
-    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+    y-=0.5;
 }
 function DZ(artwork, weather){
-    var component = document.querySelector('[weather]').components.weather; 
-    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+    z-=0.5;
 }
