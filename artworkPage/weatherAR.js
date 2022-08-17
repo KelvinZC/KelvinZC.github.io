@@ -34,6 +34,7 @@ AFRAME.registerComponent('weather', {
             track.setAttribute('position', '0 0 0');
             track.setAttribute('scale', '5.5 5.5 5.5');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
+            scene.appendChild(track);
             //weatherMarker.appendChild(track); 
             //track.setAttribute()
         }
