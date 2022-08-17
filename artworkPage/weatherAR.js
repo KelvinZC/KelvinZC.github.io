@@ -287,8 +287,9 @@ AFRAME.registerComponent('weather', {
                 //console.log(markerRotation.x); 
                 let angle = new THREE.Vector3(markerRotation.x-camRotation.x, markerRotation.y-camRotation.y, markerRotation.z-camRotation.z)
                 let correctEuler = new THREE.Euler().setFromVector3(angle); 
-                text.setAttribute("value", "found camera angle "+ camRotation.x +' '+camRotation.y+' '+camRotation.z+' marker angle '+
-                markerRotation.x+' '+markerRotation.y+' '+markerRotation.z);
+                //console.log(correctEuler.x); 
+                text.setAttribute("value", "found camera angle "+ camRotation.x.toFixed(4) +' '+camRotation.y.toFixed(4)+' '+camRotation.z.toFixed(4)+' marker angle '+
+                markerRotation.x.toFixed(4)+' '+markerRotation.y.toFixed(4)+' '+markerRotation.z.toFixed(4));
                 //console.log(angle);
                 if(artwork=='Racecar'){
                     track.object3D.setRotationFromEuler(correctEuler);
