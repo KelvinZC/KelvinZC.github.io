@@ -343,18 +343,18 @@ function weather(artwork, weather){
 function AX(){
     x+=0.5;
 }
-function AY(artwork, weather){
+function AY(){
     y+=0.5;
 }
-function AZ(artwork, weather){
+function AZ(){
     z+=0.5;
 }
-function DX(artwork, weather){
+function DX(){
     x-=0.5;
 }
-function DY(artwork, weather){
+function DY(){
     y-=0.5;
 }
-function DZ(artwork, weather){
+function DZ(){
     z-=0.5;
 }
