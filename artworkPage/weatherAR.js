@@ -20,6 +20,7 @@ AFRAME.registerComponent('weather', {
         console.log(weather);
         let weatherMarker = document.querySelector('a-marker');
         var weatherModel = document.createElement('a-asset-item');
+        let cam = document.querySelector('#cam');
         weatherModel.setAttribute('id', 'weatherModel');
         //choose gps container entity 
         const groupContainer = document.querySelector("#container");//document.createElement('a-entity');
@@ -268,6 +269,7 @@ AFRAME.registerComponent('weather', {
         //get marker postion and rotation every 16ms. 
         let markerPosition;
         let markerRotation;
+        let camRotation;
         let update;
 
         //when the marker is visible
@@ -281,12 +283,15 @@ AFRAME.registerComponent('weather', {
                 //update pos and rota
                 markerPosition = weatherMarker.object3D.position;
                 markerRotation = weatherMarker.object3D.rotation;
+                camRotation = cam.object3D.rotation;
+                console.log(markerRotation+' '+camRotation); 
+                let correctEuler = new THREE.Euler().setFromVector3(markerRotation-camRotation); 
                 if(artwork=='Racecar'){
-                    track.object3D.setRotationFromEuler(markerRotation);
+                    track.object3D.setRotationFromEuler(correctEuler);
                     track.setAttribute("position",{x:markerPosition.x+x, y:markerPosition.y+y, z:markerPosition.z+z});
                 }
                 //set rota and pos
-                groupContainer.object3D.setRotationFromEuler(markerRotation);
+                groupContainer.object3D.setRotationFromEuler(correctEuler);
                 groupContainer.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
 
             }, 16);
