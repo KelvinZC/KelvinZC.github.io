@@ -34,7 +34,7 @@ AFRAME.registerComponent('weather', {
             track.setAttribute('position', '0 0 0');
             track.setAttribute('scale', '5.5 5.5 5.5');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
-            scene.appendChild(track); 
+            weatherMarker.appendChild(track); 
             //track.setAttribute()
         }
 
@@ -291,10 +291,10 @@ AFRAME.registerComponent('weather', {
                 text.setAttribute("value", "found camera angle "+ camRotation.x.toFixed(4) +' '+camRotation.y.toFixed(4)+' '+camRotation.z.toFixed(4)+' marker angle '+
                 markerRotation.x.toFixed(4)+' '+markerRotation.y.toFixed(4)+' '+markerRotation.z.toFixed(4));
                 //console.log(angle);
-                if(artwork=='Racecar'){
-                    track.object3D.setRotationFromEuler(correctEuler);
-                    track.setAttribute("position",{x:markerPosition.x+x, y:markerPosition.y+y, z:markerPosition.z+z});
-                }
+                // if(artwork=='Racecar'){
+                //     track.object3D.setRotationFromEuler(correctEuler);
+                //     track.setAttribute("position",{x:markerPosition.x+x, y:markerPosition.y+y, z:markerPosition.z+z});
+                // }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(correctEuler);
                 groupContainer.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
