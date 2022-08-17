@@ -29,6 +29,7 @@ AFRAME.registerComponent('weather', {
             
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
+            track.setAttribute('scale', '5.5 5.5 5.5');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
             scene.appendChild(track); 
             //track.setAttribute()
@@ -280,7 +281,7 @@ AFRAME.registerComponent('weather', {
                 markerRotation = weatherMarker.object3D.rotation;
                 if(artwork=='Racecar'){
                     track.object3D.setRotationFromEuler(markerRotation);
-                    track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y+1, z:markerPosition.z});
+                    track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z});
                 }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
