@@ -1,7 +1,9 @@
 //var weather = 4;// x 左右 y 上下 z厚度
 var animation = {};
 var animation_M = {};
-
+var x = 0.5;
+var y = 2.5;
+var z = -2; 
 AFRAME.registerComponent('weather', {
     /**
      * Code within this function will be called when everything in <a-scene> is ready and loaded.
@@ -26,7 +28,7 @@ AFRAME.registerComponent('weather', {
         const scene = document.querySelector("a-scene"); 
         console.log("passed in "+artwork)
         if(artwork=='Racecar'){
-            
+            track.setAttribute('id', 'trackmodel');
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
             track.setAttribute('scale', '5.5 5.5 5.5');
@@ -271,7 +273,7 @@ AFRAME.registerComponent('weather', {
         //when the marker is visible
         weatherMarker.addEventListener("markerFound", function(){
 
-            text.setAttribute("value", "found");
+            text.setAttribute("value", "found"+'x: '+x.toString()+' y:'+x.toString()+' z:'+z.toString());
             
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
@@ -281,7 +283,7 @@ AFRAME.registerComponent('weather', {
                 markerRotation = weatherMarker.object3D.rotation;
                 if(artwork=='Racecar'){
                     track.object3D.setRotationFromEuler(markerRotation);
-                    track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+                    track.setAttribute("position",{x:markerPosition.x+x, y:markerPosition.y+y, z:markerPosition.z+z});
                 }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
@@ -294,7 +296,7 @@ AFRAME.registerComponent('weather', {
         //when marker is not visible
         weatherMarker.addEventListener("markerLost", function(){
 
-            text.setAttribute("value", "lost");
+            text.setAttribute("value", "lost"+'x: '+x.toString()+' y:'+x.toString()+' z:'+z.toString());
 
             //let models stay in the last marker pos and rota, when marker was still visible
             groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
@@ -304,6 +306,13 @@ AFRAME.registerComponent('weather', {
             clearInterval(update);
 
         })
+    },
+
+    adjust: function(){
+        var trackPosition = document.querySelector('#trackmodel').object3D.position;
+        var track = document.querySelector('#trackmodel');
+        track.setAttribute("position",{x:trackPosition.x+0.5, y:trackPosition.y, z:trackPosition.z});
+    
     }
 })
 
@@ -318,4 +327,35 @@ function getRandom(min, max, decimals) {
 function weather(artwork, weather){
     var component = document.querySelector('[weather]').components.weather; 
     component.display(artwork, weather);
+}
+
+
+function AX(){
+    x+=0.5;
+    // var component = document.querySelector('[weather]').components.weather; 
+
+    // component.adjust();
+    // var trackPosition = document.querySelector('#track').object3D.position;
+    // var track = document.querySelector('#track');
+    // track.setAttribute("position",{x:trackPosition.x+0.5, y:trackPosition.y, z:trackPosition.z});
+}
+function AY(artwork, weather){
+    var component = document.querySelector('[weather]').components.weather; 
+    component.track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y+2.5, z:markerPosition});
+}
+function AZ(artwork, weather){
+    var component = document.querySelector('[weather]').components.weather; 
+    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+}
+function DX(artwork, weather){
+    var component = document.querySelector('[weather]').components.weather; 
+    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+}
+function DY(artwork, weather){
+    var component = document.querySelector('[weather]').components.weather; 
+    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
+}
+function DZ(artwork, weather){
+    var component = document.querySelector('[weather]').components.weather; 
+    component.track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
 }
