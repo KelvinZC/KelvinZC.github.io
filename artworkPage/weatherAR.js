@@ -285,7 +285,7 @@ AFRAME.registerComponent('weather', {
                 markerRotation = weatherMarker.object3D.rotation;
                 camRotation = cam.object3D.rotation;
                 //console.log(markerRotation.x); 
-                let angle = new THREE.Vector3(markerRotation.x-camRotation.x, markerRotation.y-camRotation.y, markerRotation.z-camRotation.z)
+                let angle = new THREE.Vector3(markerRotation.x+camRotation.x, markerRotation.y, markerRotation.z)
                 let correctEuler = new THREE.Euler().setFromVector3(angle); 
                 //console.log(correctEuler.x); 
                 text.setAttribute("value", "found camera angle "+ camRotation.x.toFixed(4) +' '+camRotation.y.toFixed(4)+' '+camRotation.z.toFixed(4)+' marker angle '+
