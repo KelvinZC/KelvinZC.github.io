@@ -180,7 +180,7 @@ AFRAME.registerComponent('weather', {
                             z: getRandom(-1, -4, 3)
                         });
                     rain.setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
-                    groupContainer.appendChild(rain);
+                    //groupContainer.appendChild(rain);
                 }
             }
             else{
@@ -280,7 +280,7 @@ AFRAME.registerComponent('weather', {
                 markerRotation = weatherMarker.object3D.rotation;
                 if(artwork=='Racecar'){
                     track.object3D.setRotationFromEuler(markerRotation);
-                    track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
+                    track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y+1, z:markerPosition.z});
                 }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
