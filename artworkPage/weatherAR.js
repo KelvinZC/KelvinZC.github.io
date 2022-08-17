@@ -281,7 +281,7 @@ AFRAME.registerComponent('weather', {
                 markerRotation = weatherMarker.object3D.rotation;
                 if(artwork=='Racecar'){
                     track.object3D.setRotationFromEuler(markerRotation);
-                    track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z});
+                    track.setAttribute("position",{x:markerPosition.x+0.5, y:markerPosition.y+2.5, z:markerPosition.z-2});
                 }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
