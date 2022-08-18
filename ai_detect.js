@@ -90,7 +90,7 @@ async function detect() {
             //"https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/metadata/2?lite-format=tflite"
         );
     }
-    
+    console.log("model_1"); 
     const start = Date.now();
     let input = tf.image.resizeBilinear(tf.browser.fromPixels(img), [224, 224]);
     input = tf.cast(tf.expandDims(input), 'int32');
