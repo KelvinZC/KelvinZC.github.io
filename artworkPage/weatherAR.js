@@ -275,7 +275,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerFound", function(){
 
             text.setAttribute("value", "found");
-            
+            scene.setAttribute("look-controls", "magicWindowTrackingEnabled:false");
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
 
@@ -298,7 +298,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerLost", function(){
 
             text.setAttribute("value", "lost");
-
+            scene.setAttribute("look-controls", "magicWindowTrackingEnabled:true");
             //let models stay in the last marker pos and rota, when marker was still visible
             groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
             groupContainer.object3D.setRotationFromEuler(markerRotation);
