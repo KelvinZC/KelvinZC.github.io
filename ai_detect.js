@@ -4,9 +4,9 @@ window.onload = function(){
 
     width = document.documentElement.clientWidth;
     //width=390;
-    console.log(width)
+    //console.log(width)
 
-    
+    console.log("model_1_test"); 
     let recognize = document.getElementById("recognize");
     
     recognize.innerHTML += '<canvas class="detecting" id="canvas" width=' + width + ' height='+ width + '></canvas>';
