@@ -31,7 +31,7 @@ const resultEle = document.querySelector(`.result`);
 let objectDetector;
 artworkDict = {
     0: 'story', 1: 'story', 2: 'story', 3: 'story', 4: 'story', 5: 'story', 6: 'story', 7: 'story', 8: 'story', 9: 'story',
-    10: 'story', 11: 'think', 12: 'think', 13: 'racecar', 14: 'blocks', 15: 'quantum',
+    10: 'story', 11: 'story', 12: 'think', 13: 'racecar', 14: 'blocks', 15: 'quantum',
 }
 
 // let video = document.getElementById("video");
@@ -85,7 +85,7 @@ async function detect() {
     resultEle.textContent = "Loading...";
     if (!objectDetector) {
         objectDetector = await tflite.loadTFLiteModel(
-            "AImodel/model.tflite"
+            "AImodel/model_1.tflite"
             //"http://localhost/AImodel/model.tflite"
             //"https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/metadata/2?lite-format=tflite"
         );
@@ -201,11 +201,7 @@ function createDetectionResultBox(left, top, width, height, name, score) {
 function jumpToArtworkPage(key){
     alert("Artwork detected!")
     keyString = key.toString();
-    if(key==11){
-        artworkName = artworkDict[keyString];
-        window.location.href = './artworkPage/'+ artworkName + '.html';
-    }
-
+    
     if(key>=0 && key<12){
         window.location.href = "./artworkPage/story.html?artworkID=" + keyString ;
     }

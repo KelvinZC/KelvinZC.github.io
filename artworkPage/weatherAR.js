@@ -1,9 +1,11 @@
 //var weather = 4;// x 左右 y 上下 z厚度
 var animation = {};
 var animation_M = {};
-var x = 0.5;
-var y = 2.5;
-var z = -2; 
+
+var dx = 0;
+var dy = 0;
+var dz = 0;
+
 AFRAME.registerComponent('weather', {
     /**
      * Code within this function will be called when everything in <a-scene> is ready and loaded.
@@ -20,7 +22,6 @@ AFRAME.registerComponent('weather', {
         console.log(weather);
         let weatherMarker = document.querySelector('a-marker');
         var weatherModel = document.createElement('a-asset-item');
-        let cam = document.querySelector('#cam');
         weatherModel.setAttribute('id', 'weatherModel');
         //choose gps container entity 
         const groupContainer = document.querySelector("#container");//document.createElement('a-entity');
@@ -29,10 +30,9 @@ AFRAME.registerComponent('weather', {
         const scene = document.querySelector("a-scene"); 
         console.log("passed in "+artwork)
         if(artwork=='Racecar'){
-            track.setAttribute('id', 'trackmodel');
+            
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
-            track.setAttribute('scale', '5.5 5.5 5.5');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
             scene.appendChild(track); 
             //track.setAttribute()
@@ -184,7 +184,7 @@ AFRAME.registerComponent('weather', {
                             z: getRandom(-1, -4, 3)
                         });
                     rain.setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
-                    //groupContainer.appendChild(rain);
+                    groupContainer.appendChild(rain);
                 }
             }
             else{
@@ -269,13 +269,12 @@ AFRAME.registerComponent('weather', {
         //get marker postion and rotation every 16ms. 
         let markerPosition;
         let markerRotation;
-        let camRotation;
         let update;
 
         //when the marker is visible
         weatherMarker.addEventListener("markerFound", function(){
 
-            text.setAttribute("value", "found"+'x: '+x.toString()+' y:'+x.toString()+' z:'+z.toString());
+            text.setAttribute("value", "found");
             
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
@@ -283,20 +282,12 @@ AFRAME.registerComponent('weather', {
                 //update pos and rota
                 markerPosition = weatherMarker.object3D.position;
                 markerRotation = weatherMarker.object3D.rotation;
-                camRotation = cam.object3D.rotation;
-                //console.log(markerRotation.x); 
-                let angle = new THREE.Vector3(markerRotation.x+camRotation.x, markerRotation.y, markerRotation.z)
-                let correctEuler = new THREE.Euler().setFromVector3(angle); 
-                //console.log(correctEuler.x); 
-                text.setAttribute("value", "found camera angle "+ camRotation.x.toFixed(4) +' '+camRotation.y.toFixed(4)+' '+camRotation.z.toFixed(4)+' marker angle '+
-                markerRotation.x.toFixed(4)+' '+markerRotation.y.toFixed(4)+' '+markerRotation.z.toFixed(4));
-                //console.log(angle);
                 if(artwork=='Racecar'){
-                    track.object3D.setRotationFromEuler(correctEuler);
-                    track.setAttribute("position",{x:markerPosition.x+x, y:markerPosition.y+y, z:markerPosition.z+z});
+                    track.object3D.setRotationFromEuler(markerRotation);
+                    track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
                 }
                 //set rota and pos
-                groupContainer.object3D.setRotationFromEuler(correctEuler);
+                groupContainer.object3D.setRotationFromEuler(markerRotation);
                 groupContainer.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
 
             }, 16);
@@ -306,7 +297,7 @@ AFRAME.registerComponent('weather', {
         //when marker is not visible
         weatherMarker.addEventListener("markerLost", function(){
 
-            text.setAttribute("value", "lost"+'x: '+x.toString()+' y:'+x.toString()+' z:'+z.toString());
+            text.setAttribute("value", "lost");
 
             //let models stay in the last marker pos and rota, when marker was still visible
             groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
@@ -316,19 +307,30 @@ AFRAME.registerComponent('weather', {
             clearInterval(update);
 
         })
-    },
-
-    adjust: function(){
-        var trackPosition = document.querySelector('#trackmodel').object3D.position;
-        var track = document.querySelector('#trackmodel');
-        track.setAttribute("position",{x:trackPosition.x+0.5, y:trackPosition.y, z:trackPosition.z});
-    
     }
 })
 
 
 //})
 
+function AX(){
+    dx+=0.5;
+}
+function AY(){
+    dy+=0.5;
+}
+function AZ(){
+    dz+=0.5;
+}
+function DX(){
+    dx-=0.5;
+}
+function DY(){
+    dy-=0.5;
+}
+function DZ(){
+    dz-=0.5;
+}
 
 function getRandom(min, max, decimals) {
          return (Math.random() * (max - min) + min).toFixed(decimals);
@@ -337,24 +339,4 @@ function getRandom(min, max, decimals) {
 function weather(artwork, weather){
     var component = document.querySelector('[weather]').components.weather; 
     component.display(artwork, weather);
-}
-
-
-function AX(){
-    x+=0.5;
-}
-function AY(){
-    y+=0.5;
-}
-function AZ(){
-    z+=0.5;
-}
-function DX(){
-    x-=0.5;
-}
-function DY(){
-    y-=0.5;
-}
-function DZ(){
-    z-=0.5;
 }
