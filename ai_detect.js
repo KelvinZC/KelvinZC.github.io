@@ -199,15 +199,15 @@ function createDetectionResultBox(left, top, width, height, name, score) {
 
 
 function jumpToArtworkPage(key){
-    alert("Artwork detected!")
     keyString = key.toString();
+    alert(keyString);
     
-    if(key>=0 && key<12){
-        window.location.href = "./artworkPage/story.html?artworkID=" + keyString ;
-    }
-    else{
-        artworkName = artworkDict[keyString];
-        window.location.href = './artworkPage/'+ artworkName + '.html';
-    }
+    // if(key>=0 && key<12){
+    //     window.location.href = "./artworkPage/story.html?artworkID=" + keyString ;
+    // }
+    // else{
+    //     artworkName = artworkDict[keyString];
+    //     window.location.href = './artworkPage/'+ artworkName + '.html';
+    // }
 
 }
