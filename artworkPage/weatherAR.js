@@ -275,7 +275,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerFound", function(){
 
             text.setAttribute("value", "found");
-            //disable the gyroscope to avoid distortion
+            //disable the gyroscope to avoid distortion  
             scene.setAttribute("look-controls", "enable:false");
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
