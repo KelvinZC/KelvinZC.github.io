@@ -35,6 +35,7 @@ AFRAME.registerComponent('weather', {
             
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
+            track.setAttribute('scale', '3 3 3')
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
             track.setAttribute('animation-mixer',"clip:Animation; loop:infinite")
             scene.appendChild(track); 
