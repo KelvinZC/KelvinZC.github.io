@@ -34,7 +34,7 @@ AFRAME.registerComponent('weather', {
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
-            track.setAttribute('animation-mixer',"clip: Animation; loop:infinite")
+            track.setAttribute('animation-mixer',"clip:Take 001; loop:infinite")
             scene.appendChild(track); 
             //track.setAttribute()
         }
@@ -277,7 +277,7 @@ AFRAME.registerComponent('weather', {
 
             text.setAttribute("value", "found");
             //disable the gyroscope to avoid distortion  
-            scene.setAttribute("look-controls", "enabled:false");
+            scene.setAttribute("look-controls", "enable:false");
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
 
