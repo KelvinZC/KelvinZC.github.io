@@ -3,7 +3,7 @@ var animation = {};
 var animation_M = {};
 
 var dx = 0;
-var dy = 0;
+var dy = 1.5;
 var dz = 0;
 
 AFRAME.registerComponent('weather', {
@@ -15,7 +15,7 @@ AFRAME.registerComponent('weather', {
         let width = window.screen.availWidth;
         let height = window.screen.availHeight;
 
-        scene.setAttribute("arjs", `trackingMethod: best; sourceType: webcam; debugUIEnabled: false; sourceWidth:${width};sourceHeight:${height};displayWidth:${width}; displayHeight:${height} `)
+        scene.setAttribute("arjs", `trackingMethod: best; sourceType: webcam; debugUIEnabled: false; sourceWidth:${width};sourceHeight:${height};displayWidth:${width}; displayHeight:${height}; maxDetectionRate:60 `)
    },
 
    display: function(artwork, weather){
@@ -34,6 +34,7 @@ AFRAME.registerComponent('weather', {
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
+            track.setAttribute('animation-mixer',"clip:Take 001; loop:infinite")
             scene.appendChild(track); 
             //track.setAttribute()
         }
@@ -46,15 +47,15 @@ AFRAME.registerComponent('weather', {
             
             if(artwork=='Racecar'){
                 groupContainer.setAttribute('position', '-1 0 0');
-                groupContainer.setAttribute('animation', 'property: position; to: 1 0 0;  dur: 5000; easing: linear; dir: alternate; loop:true;');
-                for(var i=0; i<20; i++){
-                    var cloud = document.createElement('a-entity');
-                    cloud.setAttribute('gltf-model', '#weatherModel');
-                    cloud.setAttribute('scale', '0.015 0.014 0.015');
-                    cloud.setAttribute('rotation', '180 0 0');
-                    cloud.setAttribute('position', {x: getRandom(-3, 3, 3), y: getRandom(-2.5, -2, 3), z: getRandom(-4, -1, 3)});
-                    groupContainer.appendChild(cloud); 
-                }
+                //groupContainer.setAttribute('animation', 'property: position; to: 1 0 0;  dur: 5000; easing: linear; dir: alternate; loop:true;');
+                // for(var i=0; i<20; i++){
+                //     var cloud = document.createElement('a-entity');
+                //     cloud.setAttribute('gltf-model', '#weatherModel');
+                //     cloud.setAttribute('scale', '0.015 0.014 0.015');
+                //     cloud.setAttribute('rotation', '180 0 0');
+                //     cloud.setAttribute('position', {x: getRandom(-3, 3, 3), y: getRandom(-2.5, -2, 3), z: getRandom(-4, -1, 3)});
+                //     groupContainer.appendChild(cloud); 
+                // }
                
             }
             else{
@@ -285,7 +286,7 @@ AFRAME.registerComponent('weather', {
                 markerRotation = weatherMarker.object3D.rotation;
                 if(artwork=='Racecar'){
                     track.object3D.setRotationFromEuler(markerRotation);
-                    track.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
+                    track.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
                 }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
