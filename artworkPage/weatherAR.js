@@ -35,7 +35,7 @@ AFRAME.registerComponent('weather', {
             
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
-            track.setAttribute('scale', '3 3 3')
+            track.setAttribute('scale', '12 12 12')
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
             track.setAttribute('animation-mixer',"clip:Animation; loop:infinite")
             scene.appendChild(track); 
@@ -282,7 +282,7 @@ AFRAME.registerComponent('weather', {
             //disable the gyroscope to avoid distortion  
             //if(gyro){
 
-                //scene.setAttribute("look-controls", "enabled:false");
+                scene.setAttribute("look-controls", "gyroEnabled:false");
                 //gyro = false; 
             //}
             //set 3d models in container to markers pos and rota 
@@ -309,7 +309,7 @@ AFRAME.registerComponent('weather', {
             text.setAttribute("value", "lost");
             //if(!gyro){
 
-                //scene.setAttribute("look-controls", "enabled:true");
+                scene.setAttribute("look-controls", "gyroEnabled:true");
                 //gyro = true; 
             //}
             //let models stay in the last marker pos and rota, when marker was still visible
