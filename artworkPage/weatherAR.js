@@ -22,7 +22,7 @@ AFRAME.registerComponent('weather', {
 
    display: function(artwork, weather){
         var cam = document.querySelector('#cam');
-        cam.setAttribute('look-controls', 'false'); 
+        cam.setAttribute('look-controls', 'enabled:false'); 
         console.log(weather);
         let weatherMarker = document.querySelector('a-marker');
         var weatherModel = document.createElement('a-asset-item');
