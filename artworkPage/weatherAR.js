@@ -6,6 +6,8 @@ var dx = 0;
 var dy = 1.5;
 var dz = 0;
 
+var gyro = true;
+
 AFRAME.registerComponent('weather', {
     /**
      * Code within this function will be called when everything in <a-scene> is ready and loaded.
@@ -34,7 +36,7 @@ AFRAME.registerComponent('weather', {
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
             track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
-            track.setAttribute('animation-mixer',"clip:Take 001; loop:infinite")
+            track.setAttribute('animation-mixer',"clip:Animation; loop:infinite")
             scene.appendChild(track); 
             //track.setAttribute()
         }
@@ -277,7 +279,11 @@ AFRAME.registerComponent('weather', {
 
             text.setAttribute("value", "found");
             //disable the gyroscope to avoid distortion  
-            scene.setAttribute("look-controls", "enable:false");
+            if(gyro){
+
+                scene.setAttribute("look-controls", "enabled:false");
+                gyro = false; 
+            }
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
 
@@ -300,7 +306,11 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerLost", function(){
 
             text.setAttribute("value", "lost");
-            scene.setAttribute("look-controls", "enabled:true");
+            if(!gyro){
+
+                scene.setAttribute("look-controls", "enabled:true");
+                gyro = true; 
+            }
             //let models stay in the last marker pos and rota, when marker was still visible
             groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
             groupContainer.object3D.setRotationFromEuler(markerRotation);
