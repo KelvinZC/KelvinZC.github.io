@@ -281,7 +281,7 @@ AFRAME.registerComponent('weather', {
             //disable the gyroscope to avoid distortion  
             if(gyro){
 
-                scene.setAttribute("look-controls", "enabled:false");
+                scene.setAttribute("look-controls", "enable:false");
                 gyro = false; 
             }
             //set 3d models in container to markers pos and rota 
