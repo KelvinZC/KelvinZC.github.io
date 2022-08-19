@@ -278,10 +278,10 @@ AFRAME.registerComponent('weather', {
         //when the marker is visible
         weatherMarker.addEventListener("markerFound", function(){
 
-            text.setAttribute("value", "found");
+            text.setAttribute("value", "found enable:false");
             //disable the gyroscope to avoid distortion  
             //if(gyro){
-
+            
                 scene.setAttribute("look-controls", "gyroEnabled:false");
                 //gyro = false; 
             //}
@@ -306,7 +306,7 @@ AFRAME.registerComponent('weather', {
         //when marker is not visible
         weatherMarker.addEventListener("markerLost", function(){
 
-            text.setAttribute("value", "lost");
+            text.setAttribute("value", "lost enable:true");
             //if(!gyro){
 
                 scene.setAttribute("look-controls", "gyroEnabled:true");
