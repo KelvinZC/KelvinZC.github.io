@@ -282,7 +282,7 @@ AFRAME.registerComponent('weather', {
             //disable the gyroscope to avoid distortion  
             //if(gyro){
             
-                scene.setAttribute("look-controls", "gyroEnabled:false");
+                //scene.setAttribute("look-controls", "gyroEnabled:false");
                 //gyro = false; 
             //}
             //set 3d models in container to markers pos and rota 
@@ -309,7 +309,7 @@ AFRAME.registerComponent('weather', {
             text.setAttribute("value", "lost enable:true");
             //if(!gyro){
 
-                scene.setAttribute("look-controls", "gyroEnabled:true");
+                //scene.setAttribute("look-controls", "gyroEnabled:true");
                 //gyro = true; 
             //}
             //let models stay in the last marker pos and rota, when marker was still visible
