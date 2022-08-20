@@ -21,7 +21,7 @@ AFRAME.registerComponent('weather', {
    },
 
    display: function(artwork, weather){
-        var cam = document.querySelector('#cam');
+        const cam = document.querySelector('#cam');
         //cam.setAttribute('look-controls', 'enabled:false'); 
         console.log(weather);
         let weatherMarker = document.querySelector('a-marker');
@@ -281,9 +281,10 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerFound", function(){
 
             text.setAttribute("value", "found enable:false");
+
             //disable the gyroscope to avoid distortion  
             //if(gyro){
-            
+            cam.setAttribute("look-controls", "enabled:false")
                 //scene.setAttribute("look-controls", "gyroEnabled:false");
                 //gyro = false; 
             //}
@@ -309,6 +310,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerLost", function(){
 
             text.setAttribute("value", "lost enable:true");
+            cam.setAttribute("look-controls", "enabled:true")
             //if(!gyro){
 
                 //scene.setAttribute("look-controls", "gyroEnabled:true");
