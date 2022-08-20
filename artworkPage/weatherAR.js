@@ -284,7 +284,7 @@ AFRAME.registerComponent('weather', {
 
             //disable the gyroscope to avoid distortion  
             //if(gyro){
-            cam.setAttribute("look-controls", "enabled:false")
+            cam.setAttribute("look-controls", "magicWindowTrackingEnabled:false")
                 //scene.setAttribute("look-controls", "gyroEnabled:false");
                 //gyro = false; 
             //}
@@ -310,7 +310,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerLost", function(){
 
             text.setAttribute("value", "lost enable:true");
-            cam.setAttribute("look-controls", "enabled:true")
+            cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
             //if(!gyro){
 
                 //scene.setAttribute("look-controls", "gyroEnabled:true");
