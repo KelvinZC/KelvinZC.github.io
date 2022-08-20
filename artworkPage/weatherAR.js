@@ -98,7 +98,7 @@ AFRAME.registerComponent('weather', {
             }
             else{
                 groupContainer.setAttribute('position', '0 0 -9');
-                groupContainer.setAttribute('animation', 'property: position; to: 0 -3 -9;  dur: 10000; easing: linear; loop:true;');
+                //groupContainer.setAttribute('animation', 'property: position; to: 0 -3 -9;  dur: 10000; easing: linear; loop:true;');
                 
                 for(var i=0; i<=100; i++){
                     var snowflower = document.createElement('a-entity');
@@ -280,8 +280,8 @@ AFRAME.registerComponent('weather', {
         //when the marker is visible
         weatherMarker.addEventListener("markerFound", function(){
 
-            text.setAttribute("value", "found enable:false");
-
+            //text.setAttribute("value", "found enable:false");
+            text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}`);
             //disable the gyroscope to avoid distortion  
             //if(gyro){
             cam.setAttribute("look-controls", "magicWindowTrackingEnabled:false")
@@ -290,7 +290,7 @@ AFRAME.registerComponent('weather', {
             //}
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
-
+                text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}`);
                 //update pos and rota
                 markerPosition = weatherMarker.object3D.position;
                 markerRotation = weatherMarker.object3D.rotation;
@@ -300,7 +300,7 @@ AFRAME.registerComponent('weather', {
                 }
                 //set rota and pos
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
-                groupContainer.setAttribute("position",{x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
+                groupContainer.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
 
             }, 16);
 
@@ -308,8 +308,9 @@ AFRAME.registerComponent('weather', {
 
         //when marker is not visible
         weatherMarker.addEventListener("markerLost", function(){
-
-            text.setAttribute("value", "lost enable:true");
+            // markerPosition = weatherMarker.object3D.position;
+            // markerRotation = weatherMarker.object3D.rotation;
+            text.setAttribute("value", `lost+dx:${dx}+dy${dy}+dz${dz}`);
             cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
             //if(!gyro){
 
@@ -317,8 +318,8 @@ AFRAME.registerComponent('weather', {
                 //gyro = true; 
             //}
             //let models stay in the last marker pos and rota, when marker was still visible
-            groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
-            groupContainer.object3D.setRotationFromEuler(markerRotation);
+            // groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
+            // groupContainer.object3D.setRotationFromEuler(markerRotation);
             
             //stop update models pos and rota
             clearInterval(update);
@@ -331,7 +332,9 @@ AFRAME.registerComponent('weather', {
 //})
 
 function AX(){
+
     dx+=0.5;
+    
 }
 function AY(){
     dy+=0.5;
