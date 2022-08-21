@@ -41,7 +41,7 @@ AFRAME.registerComponent('weather', {
             
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
-            track.setAttribute('scale', '3 3 3')
+            track.setAttribute('scale', '6 6 6')
             track.setAttribute('rotation', '-90 0 0');
             track.setAttribute('id', "trackModel"); 
             //track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
@@ -337,7 +337,7 @@ AFRAME.registerComponent('weather', {
                 }
                 //groupContainer.setAttribute('animation', `property: position; to:  ${x+10} ${y} ${z};  dur: 10000; easing: linear; dir: alternate; loop:true;`);
             }else if(i==2){
-                groupContainer.setAttribute("position",{x:x, y:y, z:z}); 
+                groupContainer.setAttribute("position",{x:x, y:y, z:z-3}); 
             }else if(i==3){
                 groupContainer.setAttribute("position",{x:x, y:y, z:z}); 
             }else if(i==4){
@@ -406,7 +406,8 @@ AFRAME.registerComponent('weather', {
             //let models stay in the last marker pos and rota, when marker was still visible
             // groupContainer.setAttribute("position", {x:markerPosition.x, y:markerPosition.y, z:markerPosition.z});
             // groupContainer.object3D.setRotationFromEuler(markerRotation);
-            
+            groupContainer.object3D.setRotationFromEuler(markerRotation);
+            setPosition(current_weather);
             //stop update models pos and rota
             clearInterval(update);
 
