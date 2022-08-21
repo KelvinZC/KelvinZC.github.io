@@ -6,6 +6,7 @@ var current_weather = 0;
 var dx = 0;
 var dy = 0;
 var dz = 0;
+var s = 6; 
 
 var gyro = true;
 var track_flag = false;
@@ -37,11 +38,14 @@ AFRAME.registerComponent('weather', {
         var track =  document.createElement('a-entity');
         const scene = document.querySelector("a-scene"); 
         console.log("passed in "+artwork)
-        //if(artwork=='Racecar'){
+        //if(artwork=='Racecar'){'6 6 6'
             
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
-            track.setAttribute('scale', '6 6 6')
+            //track.setAttribute('scale', `6 6 6`);
+            var track_scale = {x: s, y: s, z: s}; 
+            console.log(track_scale);
+            track.setAttribute('scale', track_scale);
             track.setAttribute('rotation', '-90 0 0');
             track.setAttribute('id', "trackModel"); 
             //track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
@@ -324,6 +328,9 @@ AFRAME.registerComponent('weather', {
             var x = parseFloat(markerPosition.x)+parseFloat(dx);
             var y = parseFloat(markerPosition.y)+parseFloat(dy);
             var z = parseFloat(markerPosition.z)+parseFloat(dz);
+            var track_scale = {x: s, y: s, z: s}; 
+            //console.log(track_scale);
+            track.setAttribute('scale', track_scale);
             if(i==1){
                 // var x = markerPosition.x+dx-5;
                 // var y = markerPosition.y+dy+8;
@@ -361,7 +368,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerFound", function(){
             groupContainer.setAttribute("visible", "true");
             //text.setAttribute("value", "found enable:false");
-            text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}`);
+            text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}+scale${s}`);
             //disable the gyroscope to avoid distortion  
             //if(gyro){
             cam.setAttribute("look-controls", "magicWindowTrackingEnabled:false")
@@ -371,7 +378,7 @@ AFRAME.registerComponent('weather', {
             
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
-                text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}`);
+                text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}+scale${s}`);
 
                 //update pos and rota
                 markerPosition = weatherMarker.object3D.position;
@@ -396,7 +403,7 @@ AFRAME.registerComponent('weather', {
         weatherMarker.addEventListener("markerLost", function(){
             // markerPosition = weatherMarker.object3D.position;
             // markerRotation = weatherMarker.object3D.rotation;
-            text.setAttribute("value", `lost+dx:${dx}+dy${dy}+dz${dz}`);
+            text.setAttribute("value", `lost+dx:${dx}+dy${dy}+dz${dz}+scale${scale}`);
             cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
             //if(!gyro){
 
@@ -438,6 +445,14 @@ function DY(){
 }
 function DZ(){
     dz-=0.5;
+}
+
+function SU(){
+    s+=0.5;
+}
+
+function SD(){
+    s-=0.5;
 }
 
 function getRandom(min, max, decimals) {
