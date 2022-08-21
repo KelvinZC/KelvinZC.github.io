@@ -112,7 +112,7 @@ AFRAME.registerComponent('weather', {
             weatherModel.setAttribute('src', '../ARModels/snowflake/scene.gltf');
             weatherMarker.appendChild(weatherModel);
             track.setAttribute('position', '0 0.5 0');
-            track.setAttribute('scale', '9 9 9');
+            track.setAttribute('scale', '11 11 11');
             //groupContainer.setAttribute('position', '0 0 -9');
             
             
