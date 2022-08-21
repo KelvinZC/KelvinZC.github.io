@@ -112,7 +112,7 @@ AFRAME.registerComponent('weather', {
             weatherModel.setAttribute('src', '../ARModels/snowflake/scene.gltf');
             weatherMarker.appendChild(weatherModel);
             track.setAttribute('position', '0 0.5 0');
-            track.setAttribute('scale', '11 11 11');
+            track.setAttribute('scale', '12 12 12');
             //groupContainer.setAttribute('position', '0 0 -9');
             
             
@@ -215,46 +215,9 @@ AFRAME.registerComponent('weather', {
             weatherModel.setAttribute('src', '../ARModels/rain/scene.gltf');
             weatherMarker.appendChild(weatherModel);
 
-
-            if(artwork=='Racecar'){
-                groupContainer.setAttribute('position', '-4 0 0');
-                groupContainer.setAttribute('animation', 'property: position; to: 4 0 0;  dur: 5000; easing: linear; dir: alternate; loop:true;');
-
-                for (var i = 0; i < 2; i++) {
-                    var rain = document.createElement('a-entity')
-                    rain.setAttribute('gltf-model', '#weatherModel')
-                    rain.setAttribute("animation-mixer", "clip:Take 001; loop:infinite")
-                    rain.setAttribute("rotation", "0 0 0")
-                    material="opacity: 0.0; transparent: true">
-                    rain.setAttribute('opacity', '0.5')
-                    rain.setAttribute('transparent', true)
-                    rain.setAttribute('position',
-                        {
-                            x: getRandom(-2, 2, 3),
-                            y: -14,
-                            z: getRandom(-1, -4, 3)
-                        });
-                    rain.setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
-                    groupContainer.appendChild(rain);
-                }
-            }
-            else{
-                //groupContainer.setAttribute('position', '-8 0 0');
-                //groupContainer.setAttribute('animation', 'property: position; to: 8 0 0;  dur: 1000; easing: linear; dir: alternate; loop:true;');
-                // for (var i = 0; i < 8; i++) {
-                //     var rain = document.createElement('a-entity');
-                //     rain.setAttribute('gltf-model', '#weatherModel')
-                //     rain.setAttribute("animation-mixer", "clip:Take 001; loop:infinite")
-                //     rain.setAttribute("rotation", "-90 0 0")
-                //     rain.setAttribute('position',
-                //         {
-                //             x: getRandom(-8, 8, 3),
-                //             y: getRandom(-20, -15, 3),
-                //             z: getRandom(3.5, 4, 3)
-                //         });
-                //     rain.setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
-                //     groupContainer.appendChild(rain);
-                // }
+            track.setAttribute('position', '6 -26 1.5');
+            track.setAttribute('scale', '12 12 12');
+           
                 var scale = {x: 0.01, y: 0.01, z: 0.01};
                 var rotation = {x:-90, y:0,z:0};
                 var animation = {clip: "Take 001", loop: "infinite"};
@@ -283,7 +246,7 @@ AFRAME.registerComponent('weather', {
                 }
                 
                 
-            }
+            
             
         }
         //sunny  and other weather if(weather == 2) 5
