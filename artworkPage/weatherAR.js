@@ -8,6 +8,7 @@ var dy = 0;
 var dz = 0;
 
 var gyro = true;
+var track_flag = false;
 
 
 AFRAME.registerComponent('weather', {
@@ -36,16 +37,18 @@ AFRAME.registerComponent('weather', {
         var track =  document.createElement('a-entity');
         const scene = document.querySelector("a-scene"); 
         console.log("passed in "+artwork)
-        if(artwork=='Racecar'){
+        //if(artwork=='Racecar'){
             
             track.setAttribute('gltf-model', '#track');
             track.setAttribute('position', '0 0 0');
             track.setAttribute('scale', '3 3 3')
-            track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
+            track.setAttribute('rotation', '-90 0 0');
+            track.setAttribute('id', "trackModel"); 
+            //track.setAttribute('gps-entity-place', {longitude: 51.5247038455639, latitude: -0.132348748884972})
             track.setAttribute('animation-mixer',"clip:Animation; loop:infinite")
-            scene.appendChild(track); 
+            groupContainer.appendChild(track); 
             //track.setAttribute()
-        }
+        //}
 
         //template for model parameter  {x: , y: , z: }
         //cloudy
@@ -326,6 +329,12 @@ AFRAME.registerComponent('weather', {
                 // var y = markerPosition.y+dy+8;
                 // var z = markerPosition.z+dz-12;
                 groupContainer.setAttribute("position",{x:x-5, y:y+8, z:z-12});
+                if(!track_flag){
+                    var trackPosition = document.querySelector("#trackModel").getAttribute("position");
+                    console.log(trackPosition.x);
+                    track.setAttribute('position', {x:parseFloat(trackPosition.x)+5, y:parseFloat(trackPosition.y)-8, z:parseFloat(trackPosition.z)+12}); 
+                    track_flag = true; 
+                }
                 //groupContainer.setAttribute('animation', `property: position; to:  ${x+10} ${y} ${z};  dur: 10000; easing: linear; dir: alternate; loop:true;`);
             }else if(i==2){
                 groupContainer.setAttribute("position",{x:x, y:y, z:z}); 
@@ -367,10 +376,10 @@ AFRAME.registerComponent('weather', {
                 //update pos and rota
                 markerPosition = weatherMarker.object3D.position;
                 markerRotation = weatherMarker.object3D.rotation;
-                if(artwork=='Racecar'){
-                    track.object3D.setRotationFromEuler(markerRotation);
-                    track.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
-                }
+                //if(artwork=='Racecar'){
+                    //track.object3D.setRotationFromEuler(markerRotation);
+                    //track.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
+                //}
                 
                 //set rota and pos
                 //groupContainer.setAttribute("animation", )
