@@ -74,7 +74,7 @@ AFRAME.registerComponent('weather', {
                
             }
             else{
-                
+                track.setAttribute('scale', '20 20 20');
                 var scale = {x:0.1, y: 0.1, z: 0.1}; 
                 var rotation= {x: 180, y: 0, z: 0};
                 
@@ -146,29 +146,12 @@ AFRAME.registerComponent('weather', {
             weatherModel.setAttribute('src', '../ARModels/leaf/scene.gltf');
             weatherMarker.appendChild(weatherModel);
             
-            if(artwork == 'Racecar'){
-                groupContainer.setAttribute('position', '-3 0 -20');
-                groupContainer.setAttribute('animation', 'property: position; to: 3 0 -20;  dur: 4000; easing: linear; loop:true;');
-                
-                for(var i=0; i<20; i++){
-                    var leaf1 = document.createElement('a-entity');
-                    leaf1.setAttribute('gltf-model', '#weatherModel');
-                    leaf1.setAttribute('rotation', '-90 0 0');
-                    leaf1.setAttribute('scale', '2 2 2');
-                    leaf1.setAttribute('position', {x: getRandom(-5, 5, 3), y: getRandom(4, -4, 3), z: getRandom(-8, -4, 3)});
-                    leaf1.setAttribute('material', 'opacity: 0; transparent: true');
-                    leaf1.setAttribute('animation', `property: rotation; to: ${getRandom(0, 720, 0)}
-                    ${getRandom(0, 720, 0)} ${getRandom(0, 720, 0)}; loop: true; dur: 8000`); 
-
-                    groupContainer.appendChild(leaf1);
-                    
-                }
-            }
-            else{
+            track.setAttribute('scale', '8 8 8');
+            
                
                 
 
-                for(var i=0; i<8; i++){
+                for(var i=0; i<5; i++){
                     var random_x = getRandom(-5, 5, 1);
                     var random_y =getRandom(1, 2, 3);
                     var random_z = getRandom(-4, -8, 3);
@@ -206,7 +189,7 @@ AFRAME.registerComponent('weather', {
                     groupContainer.appendChild(leaf2);
                 }
             
-            }
+            
 
         }
         // rainy 4
@@ -255,7 +238,7 @@ AFRAME.registerComponent('weather', {
             // add sun
             weatherModel.setAttribute('src', '../ARModels/sun1/scene.gltf');
             weatherMarker.appendChild(weatherModel);
-            track.setAttribute('scale', '7 7 7');
+            track.setAttribute('scale', '8 8 8');
             var sun = document.createElement('a-entity');
             sun.setAttribute('gltf-model', '#weatherModel');
             sun.setAttribute('scale', '3 3 3');
