@@ -215,7 +215,7 @@ AFRAME.registerComponent('weather', {
             weatherModel.setAttribute('src', '../ARModels/rain/scene.gltf');
             weatherMarker.appendChild(weatherModel);
 
-            track.setAttribute('position', '6 -20.5 1.5');
+            track.setAttribute('position', '6 -20.5 3.8');
             track.setAttribute('scale', '25 25 25');
            
                 var scale = {x: 0.01, y: 0.01, z: 0.01};
@@ -255,7 +255,7 @@ AFRAME.registerComponent('weather', {
             // add sun
             weatherModel.setAttribute('src', '../ARModels/sun1/scene.gltf');
             weatherMarker.appendChild(weatherModel);
-            
+            track.setAttribute('scale', '7 7 7');
             var sun = document.createElement('a-entity');
             sun.setAttribute('gltf-model', '#weatherModel');
             sun.setAttribute('scale', '3 3 3');
