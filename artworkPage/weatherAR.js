@@ -55,7 +55,7 @@ AFRAME.registerComponent('weather', {
         //}
 
         //template for model parameter  {x: , y: , z: }
-        //cloudy
+        //cloudy 1
         if(weather.toLowerCase().indexOf("cloud") != -1){
             weatherModel.setAttribute('src', '../ARModels/cloudy/scene.gltf');
             weatherMarker.appendChild(weatherModel);
@@ -106,7 +106,7 @@ AFRAME.registerComponent('weather', {
             }
             
         }
-        //snow
+        //snow 2 
         else if(weather.toLowerCase().indexOf("snow") != -1){
             current_weather = 2;
             weatherModel.setAttribute('src', '../ARModels/snowflake/scene.gltf');
@@ -152,7 +152,7 @@ AFRAME.registerComponent('weather', {
 
         }
         
-        //windy
+        //windy 3
         else if(weather.toLowerCase().indexOf("wind") != -1){
             current_weather = 3; 
             // add leaves
@@ -222,7 +222,7 @@ AFRAME.registerComponent('weather', {
             }
 
         }
-        // rainy
+        // rainy 4
         else if(weather.toLowerCase().indexOf("rain") != -1 || weather.toLowerCase().indexOf("thunder") != -1){
             current_weather = 4;
             weatherModel.setAttribute('src', '../ARModels/rain/scene.gltf');
@@ -299,7 +299,7 @@ AFRAME.registerComponent('weather', {
             }
             
         }
-        //sunny  and other weather if(weather == 2)
+        //sunny  and other weather if(weather == 2) 5
         else {
             current_weather = 5;
             // add sun
@@ -325,9 +325,9 @@ AFRAME.registerComponent('weather', {
         
 
         function setPosition( i ){
-            var x = parseFloat(markerPosition.x)+parseFloat(dx);
-            var y = parseFloat(markerPosition.y)+parseFloat(dy);
-            var z = parseFloat(markerPosition.z)+parseFloat(dz);
+            var x = parseFloat(markerPosition.x)//+parseFloat(dx);
+            var y = parseFloat(markerPosition.y)//+parseFloat(dy);
+            var z = parseFloat(markerPosition.z)//+parseFloat(dz);
             var track_scale = {x: s, y: s, z: s}; 
             //console.log(track_scale);
             track.setAttribute('scale', track_scale);
@@ -419,6 +419,15 @@ AFRAME.registerComponent('weather', {
             clearInterval(update);
 
         })
+    },
+
+    setTrackP: function(){
+        var track = document.querySelector("#trackModel");
+        var trackP = track.object3D.position;
+        var T_x = parseFloat(trackP.x)+parseFloat(dx);
+        var T_y = parseFloat(trackP.y)+parseFloat(dy);
+        var T_z = parseFloat(trackP.z)+parseFloat(dz);
+        track.setAttribute("position", {x:T_x, y:T_y, z:T_z}); 
     }
 })
 
@@ -429,22 +438,33 @@ AFRAME.registerComponent('weather', {
 function AX(){
 
     dx+=0.5;
-    
+    var component = document.querySelector('[weather]').components.weather; 
+    component.setTrackP();
 }
 function AY(){
     dy+=0.5;
+    var component = document.querySelector('[weather]').components.weather; 
+    component.setTrackP();
 }
 function AZ(){
     dz+=0.5;
+    var component = document.querySelector('[weather]').components.weather; 
+    component.setTrackP();
 }
 function DX(){
     dx-=0.5;
+    var component = document.querySelector('[weather]').components.weather; 
+    component.setTrackP();
 }
 function DY(){
     dy-=0.5;
+    var component = document.querySelector('[weather]').components.weather; 
+    component.setTrackP();
 }
 function DZ(){
     dz-=0.5;
+    var component = document.querySelector('[weather]').components.weather; 
+    component.setTrackP();
 }
 
 function SU(){
