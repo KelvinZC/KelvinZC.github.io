@@ -74,7 +74,7 @@ AFRAME.registerComponent('weather', {
                
             }
             else{
-                track.setAttribute('scale', '20 20 20');
+                track.setAttribute('scale', '23 23 23');
                 track.setAttribute('position', '0 0 2.5');
                 var scale = {x:0.1, y: 0.1, z: 0.1}; 
                 var rotation= {x: 180, y: 0, z: 0};
