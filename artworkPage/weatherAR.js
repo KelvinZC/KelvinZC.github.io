@@ -71,10 +71,10 @@ AFRAME.registerComponent('weather', {
                 var rotation= {x: 180, y: 0, z: 0};
                 
                 
-                for(var i=0; i<=2; i++){
-                    var random_x = getRandom(-8, 8, 0);
-                    var random_y = getRandom(-2, 2, 0);
-                    var random_z = getRandom(-3, -4, 0);
+                for(var i=0; i<=10; i++){
+                    var random_x = getRandom(-20, 20, 0);
+                    var random_y = getRandom(-8, 3, 0);
+                    var random_z = getRandom(-4, -6, 0);
                     var position = {x: random_x, y: random_y, z: random_z};
                     var to_x = 10+parseInt(random_x);
                     console.log(position)
@@ -283,7 +283,7 @@ AFRAME.registerComponent('weather', {
         function setPosition( i ){
             if(i==1){
                 var x = markerPosition.x+dx-5;
-                var y = markerPosition.y+dy+3;
+                var y = markerPosition.y+dy+8;
                 var z = markerPosition.z+dz-12;
                 groupContainer.setAttribute("position",{x:x, y:y, z:z});
                 //groupContainer.setAttribute('animation', `property: position; to:  ${x+10} ${y} ${z};  dur: 10000; easing: linear; dir: alternate; loop:true;`);
