@@ -215,8 +215,8 @@ AFRAME.registerComponent('weather', {
             weatherModel.setAttribute('src', '../ARModels/rain/scene.gltf');
             weatherMarker.appendChild(weatherModel);
 
-            track.setAttribute('position', '6 -23.5 1.5');
-            track.setAttribute('scale', '20 20 20');
+            track.setAttribute('position', '6 -20.5 1.5');
+            track.setAttribute('scale', '25 25 25');
            
                 var scale = {x: 0.01, y: 0.01, z: 0.01};
                 var rotation = {x:-90, y:0,z:0};
