@@ -41,7 +41,7 @@ AFRAME.registerComponent('weather', {
         //if(artwork=='Racecar'){'6 6 6'
             
             track.setAttribute('gltf-model', '#track');
-            track.setAttribute('position', '0 0 0');
+            
             //track.setAttribute('scale', `6 6 6`);
             var track_scale = {x: s, y: s, z: s}; 
             console.log(track_scale);
@@ -111,44 +111,31 @@ AFRAME.registerComponent('weather', {
             current_weather = 2;
             weatherModel.setAttribute('src', '../ARModels/snowflake/scene.gltf');
             weatherMarker.appendChild(weatherModel);
-
-            if(artwork=='Racecar'){
-                groupContainer.setAttribute('position', '0 0 0');
-                groupContainer.setAttribute('animation', 'property: position; to: 0 0 -9,  dur: 20000; easing: linear; loop:true;');
+            track.setAttribute('position', '0 0.5 0');
+            track.setAttribute('scale', '7 7 7');
+            //groupContainer.setAttribute('position', '0 0 -9');
+            
+            
+            for(var i=0; i<=200; i++){
+                var random_x =  getRandom(-10, 10, 0);
+                var random_y =getRandom(-20, 20, 0);
+                var random_z = getRandom(-8, 0, 1);
+                var position = {x: random_x, y: random_y, z: random_z};
                 
-                for(var i=0; i<=100; i++){   
-                    var snowflake = document.createElement('a-entity');
-                    snowflake.setAttribute('gltf-model', '#weatherModel');
-                    snowflake.setAttribute('scale', '0.01 0.01 0.005');
-                    snowflake.setAttribute('rotation', {x: getRandom(0, 180, 1), y: getRandom(0, 180, 1), z: getRandom(0, 180, 1)});
-                    snowflake.setAttribute('position', {x: getRandom(-3, 3, 3), y: getRandom(1, 2, 3), z: getRandom(-4, 1.5, 3)});
-                    groupContainer.appendChild(snowflake);
+                var to_y = -3+parseFloat(random_y);
+                var to_z = 9+parseFloat(random_z);
+                var dur = getRandom(6000, 12000, 1)
+                var snowflake = document.createElement('a-entity');
+                snowflake.setAttribute('gltf-model', '#weatherModel');
+                snowflake.setAttribute('scale', '0.03 0.03 0.005');
+                snowflake.setAttribute('rotation', {x: getRandom(0, 180, 1), y: getRandom(0, 180, 1), z: getRandom(0, 180, 1)});
+                snowflake.setAttribute('position', position);
+                snowflake.setAttribute('animation', `property: rotation; to: ${getRandom(0, 720, 0)}
+                ${getRandom(0, 720, 0)} ${getRandom(0, 720, 0)}; loop: true; dur: 8000`); 
+                snowflake.setAttribute('animation__2', `property: position; to: ${random_x} ${random_y} ${to_z};  dur: ${dur}; easing: linear; loop:true;`);
+                groupContainer.appendChild(snowflake);
                 }
-            }
-            else{
-                groupContainer.setAttribute('position', '0 0 -9');
-                
-                
-                for(var i=0; i<=200; i++){
-                    var random_x =  getRandom(-10, 10, 0);
-                    var random_y =getRandom(-20, 20, 0);
-                    var random_z = getRandom(-8, 0, 1);
-                    var position = {x: random_x, y: random_y, z: random_z};
-                    
-                    var to_y = -3+parseFloat(random_y);
-                    var to_z = 9+parseFloat(random_z);
-                    var dur = getRandom(6000, 12000, 1)
-                    var snowflake = document.createElement('a-entity');
-                    snowflake.setAttribute('gltf-model', '#weatherModel');
-                    snowflake.setAttribute('scale', '0.03 0.03 0.005');
-                    snowflake.setAttribute('rotation', {x: getRandom(0, 180, 1), y: getRandom(0, 180, 1), z: getRandom(0, 180, 1)});
-                    snowflake.setAttribute('position', position);
-                    snowflake.setAttribute('animation', `property: rotation; to: ${getRandom(0, 720, 0)}
-                    ${getRandom(0, 720, 0)} ${getRandom(0, 720, 0)}; loop: true; dur: 8000`); 
-                    snowflake.setAttribute('animation__2', `property: position; to: ${random_x} ${random_y} ${to_z};  dur: ${dur}; easing: linear; loop:true;`);
-                    groupContainer.appendChild(snowflake);
-                }
-            }
+            
 
         }
         
@@ -430,7 +417,7 @@ AFRAME.registerComponent('weather', {
         track.setAttribute("position", {x:T_x, y:T_y, z:T_z}); 
     }
 })
-
+//snow scale up2 y +0.5
 
 
 //})
