@@ -1,9 +1,10 @@
 //var weather = 4;// x 左右 y 上下 z厚度
 var animation = {};
 var animation_M = {};
+var current_weather = 0;
 
 var dx = 0;
-var dy = 1.5;
+var dy = 0;
 var dz = 0;
 
 var gyro = true;
@@ -21,6 +22,7 @@ AFRAME.registerComponent('weather', {
    },
 
    display: function(artwork, weather){
+
         const cam = document.querySelector('#cam');
         //cam.setAttribute('look-controls', 'enabled:false'); 
         console.log(weather);
@@ -49,7 +51,7 @@ AFRAME.registerComponent('weather', {
         if(weather.toLowerCase().indexOf("cloud") != -1){
             weatherModel.setAttribute('src', '../ARModels/cloudy/scene.gltf');
             weatherMarker.appendChild(weatherModel);
-            
+            current_weather = 1;
             if(artwork=='Racecar'){
                 groupContainer.setAttribute('position', '-1 0 0');
                 //groupContainer.setAttribute('animation', 'property: position; to: 1 0 0;  dur: 5000; easing: linear; dir: alternate; loop:true;');
@@ -64,17 +66,28 @@ AFRAME.registerComponent('weather', {
                
             }
             else{
-     
-                groupContainer.setAttribute('position', '-1 0 0');
-                groupContainer.setAttribute('animation', 'property: position; to: 1 0 0;  dur: 10000; easing: linear; dir: alternate; loop:true;');
-                var scale = {x:0.015, y: 0.014, z: 0.015}; 
+                
+                var scale = {x:0.1, y: 0.1, z: 0.1}; 
                 var rotation= {x: 180, y: 0, z: 0};
                 
                 
-                for(var i=0; i<=8; i++){
-                    var position = {x: getRandom(-2, 2, 3), y: getRandom(-2, -1, 3), z: getRandom(-4, -3.5, 3)};
-                    appendModel(scale, rotation, position, animation)
+                for(var i=0; i<=2; i++){
+                    var random_x = getRandom(-8, 8, 0);
+                    var random_y = getRandom(-2, 2, 0);
+                    var random_z = getRandom(-3, -4, 0);
+                    var position = {x: random_x, y: random_y, z: random_z};
+                    var to_x = 10+parseInt(random_x);
+                    console.log(position)
+                    var model = document.createElement('a-entity');
+                    model.setAttribute('gltf-model', '#weatherModel');
+                    model.setAttribute('scale', scale);
+                    model.setAttribute('rotation', rotation);
+                    model.setAttribute('position', position);
+                    model.setAttribute('animation', `property: position; to: ${to_x} ${random_y} ${random_z};  dur: 5000; easing: linear; dir: alternate; loop:true;`);
+                    groupContainer.appendChild(model);
+                    //appendModel(scale, rotation, position, animation)
                 }
+                
             }
             
         }
@@ -98,12 +111,12 @@ AFRAME.registerComponent('weather', {
             }
             else{
                 groupContainer.setAttribute('position', '0 0 -9');
-                //groupContainer.setAttribute('animation', 'property: position; to: 0 -3 -9;  dur: 10000; easing: linear; loop:true;');
+                groupContainer.setAttribute('animation', 'property: position; to: 0 -3 -9;  dur: 10000; easing: linear; loop:true;');
                 
                 for(var i=0; i<=100; i++){
                     var snowflower = document.createElement('a-entity');
                     snowflower.setAttribute('gltf-model', '#weatherModel');
-                    snowflower.setAttribute('scale', '0.01 0.01 0.005');
+                    snowflower.setAttribute('scale', '0.03 0.03 0.005');
                     snowflower.setAttribute('rotation', {x: getRandom(0, 180, 1), y: getRandom(0, 180, 1), z: getRandom(0, 180, 1)});
                     snowflower.setAttribute('position', {x: getRandom(-3, 3, 3), y: getRandom(1, 2, 3), z: getRandom(-4, 1.5, 3)});
                     groupContainer.appendChild(snowflower);
@@ -266,6 +279,24 @@ AFRAME.registerComponent('weather', {
             
 
         }
+
+        function setPosition( i ){
+            if(i==1){
+                var x = markerPosition.x+dx-5;
+                var y = markerPosition.y+dy+3;
+                var z = markerPosition.z+dz-12;
+                groupContainer.setAttribute("position",{x:x, y:y, z:z});
+                //groupContainer.setAttribute('animation', `property: position; to:  ${x+10} ${y} ${z};  dur: 10000; easing: linear; dir: alternate; loop:true;`);
+            }else if(i==2){
+
+            }else if(i==3){
+
+            }else if(i==4){
+
+            }else{
+
+            }
+        }
         //text for testing
         var text = document.querySelector("#top");
 
@@ -288,9 +319,11 @@ AFRAME.registerComponent('weather', {
                 //scene.setAttribute("look-controls", "gyroEnabled:false");
                 //gyro = false; 
             //}
+            
             //set 3d models in container to markers pos and rota 
             update = setInterval(() => {
                 text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}`);
+
                 //update pos and rota
                 markerPosition = weatherMarker.object3D.position;
                 markerRotation = weatherMarker.object3D.rotation;
@@ -298,11 +331,15 @@ AFRAME.registerComponent('weather', {
                     track.object3D.setRotationFromEuler(markerRotation);
                     track.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
                 }
+                
                 //set rota and pos
+                //groupContainer.setAttribute("animation", )
                 groupContainer.object3D.setRotationFromEuler(markerRotation);
-                groupContainer.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
+                setPosition(current_weather);
+                //groupContainer.setAttribute("position",{x:markerPosition.x+dx, y:markerPosition.y+dy, z:markerPosition.z+dz});
 
             }, 16);
+            
 
         })
 
@@ -327,6 +364,7 @@ AFRAME.registerComponent('weather', {
         })
     }
 })
+
 
 
 //})
