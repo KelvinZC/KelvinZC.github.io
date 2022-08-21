@@ -278,9 +278,9 @@ AFRAME.registerComponent('weather', {
             var x = parseFloat(markerPosition.x)//+parseFloat(dx);
             var y = parseFloat(markerPosition.y)//+parseFloat(dy);
             var z = parseFloat(markerPosition.z)//+parseFloat(dz);
-            var track_scale = {x: s, y: s, z: s}; 
+            //var track_scale = {x: s, y: s, z: s}; 
             //console.log(track_scale);
-            track.setAttribute('scale', track_scale);
+            //track.setAttribute('scale', track_scale);
             if(i==1){
                 // var x = markerPosition.x+dx-5;
                 // var y = markerPosition.y+dy+8;
