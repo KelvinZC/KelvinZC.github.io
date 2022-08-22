@@ -23,13 +23,7 @@ AFRAME.registerComponent('weather', {
         let height = window.screen.availHeight;
 
         scene.setAttribute("arjs", `trackingMethod: best; sourceType: webcam; debugUIEnabled: false; sourceWidth:${width};sourceHeight:${height};displayWidth:${width}; displayHeight:${height}; maxDetectionRate:60 `)
-        window.addEventListener("orientationchange", function() {
-            let scene = document.querySelector('a-scene');
-            let width = window.screen.availWidth;
-            let height = window.screen.availHeight;
-    
-            scene.setAttribute("arjs", `trackingMethod: best; sourceType: webcam; debugUIEnabled: false; sourceWidth:${width};sourceHeight:${height};displayWidth:${width}; displayHeight:${height}; maxDetectionRate:60 `)
-          });
+        
    },
 
    display: function(artwork, weather){

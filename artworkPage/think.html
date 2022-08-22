@@ -12,11 +12,11 @@
     <!-- <script src="weather-api.js"></script> -->
     <script src="weatherAR_think.js"></script>
     <link rel="stylesheet" href="../css/backButton.css">
-    <!-- <script>
-      window.addEventListener('load', function(){
-        screen.orientation.lock("landscape");
-      })
-    </script> -->
+    <script>
+      window.addEventListener("orientationchange", function() {
+        this.window.location.reload();
+       });
+    </script>
 
 
 </head>
