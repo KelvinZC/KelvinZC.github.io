@@ -273,6 +273,7 @@ AFRAME.registerComponent('weather', {
 
         //when the marker is visible
         weatherMarker.addEventListener("markerFound", function(){
+            alert("sfaasd");
             groupContainer.setAttribute("visible", "true");
             //text.setAttribute("value", "found enable:false");
             text.setAttribute("value", `found+dx:${dx}+dy${dy}+dz${dz}+scale${s}`);
@@ -311,7 +312,7 @@ AFRAME.registerComponent('weather', {
             // markerPosition = weatherMarker.object3D.position;
             // markerRotation = weatherMarker.object3D.rotation;
             text.setAttribute("value", `lost+dx:${dx}+dy${dy}+dz${dz}+scale${scale}`);
-            cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
+            
             //if(!gyro){
 
                 //scene.setAttribute("look-controls", "gyroEnabled:true");
@@ -322,6 +323,7 @@ AFRAME.registerComponent('weather', {
             // groupContainer.object3D.setRotationFromEuler(markerRotation);
             groupContainer.object3D.setRotationFromEuler(markerRotation);
             setPosition(current_weather);
+            cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
             //stop update models pos and rota
             clearInterval(update);
 
