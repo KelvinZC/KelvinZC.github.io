@@ -323,7 +323,7 @@ AFRAME.registerComponent('weather', {
             // groupContainer.object3D.setRotationFromEuler(markerRotation);
             groupContainer.object3D.setRotationFromEuler(markerRotation);
             setPosition(current_weather);
-            //cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
+            cam.setAttribute("look-controls", "magicWindowTrackingEnabled:true")
             //stop update models pos and rota
             clearInterval(update);
 
