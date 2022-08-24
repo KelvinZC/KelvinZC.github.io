@@ -18,7 +18,7 @@ AFRAME.registerComponent('weather', {
      */
    init: function () {
         let scene = document.querySelector('a-scene');
-        scene.flushToDOM(true);
+        //scene.flushToDOM(true);
         let width = window.screen.availWidth;
         let height = window.screen.availHeight;
 
@@ -243,12 +243,12 @@ AFRAME.registerComponent('weather', {
                 // var y = markerPosition.y+dy+8;
                 // var z = markerPosition.z+dz-12;
                 groupContainer.setAttribute("position",{x:x-5, y:y+8, z:z-12});
-                if(!track_flag){
-                    var trackPosition = document.querySelector("#trackModel").getAttribute("position");
-                    console.log(trackPosition.x);
-                    track.setAttribute('position', {x:parseFloat(trackPosition.x)+5, y:parseFloat(trackPosition.y)-8, z:parseFloat(trackPosition.z)+12}); 
-                    track_flag = true; 
-                }
+                // if(!track_flag){
+                //     var trackPosition = document.querySelector("#trackModel").getAttribute("position");
+                //     console.log(trackPosition.x);
+                //     track.setAttribute('position', {x:parseFloat(trackPosition.x)+5, y:parseFloat(trackPosition.y)-8, z:parseFloat(trackPosition.z)+12}); 
+                //     track_flag = true; 
+                // }
                 //groupContainer.setAttribute('animation', `property: position; to:  ${x+10} ${y} ${z};  dur: 10000; easing: linear; dir: alternate; loop:true;`);
             }else if(i==2){
                 groupContainer.setAttribute("position",{x:x, y:y, z:z-3}); 
